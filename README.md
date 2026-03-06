@@ -48,7 +48,7 @@ Un script RouterOS très robuste (`routeros/update-whitelists.rsc`) s'exécute l
 2. **Créez le script :**
    Allez dans le terminal MikroTik, sous `/system script` :
    ```routeros
-   /system script add name="update-whitelists" dont-require-permissions=no policy=ftp,reboot,read,write,policy,test,password,sniff,sensitive source=[Le Contenu de update-whitelists.rsc]
+   /system script add name="update-whitelists" dont-require-permissions=no policy=read,write,test source=[Le Contenu de update-whitelists.rsc]
    ```
 
 3. **Ajoutez un Scheduler (Planificateur) :**
