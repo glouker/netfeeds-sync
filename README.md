@@ -48,13 +48,13 @@ Un script RouterOS très robuste (`routeros/update-whitelists.rsc`) s'exécute l
 2. **Créez le script :**
    Allez dans le terminal MikroTik, sous `/system script` :
    ```routeros
-   /system script add name="update-whitelists" dont-require-permissions=no policy=read,write,test source=[Le Contenu de update-whitelists.rsc]
+   /system script add name="update-whitelists" dont-require-permissions=no policy=read,write,test,ftp,policy source=[Le Contenu de update-whitelists.rsc]
    ```
 
 3. **Ajoutez un Scheduler (Planificateur) :**
    Ce cron local téléchargera et vérifiera nos whitelists automatiquement toutes les 6 heures :
    ```routeros
-   /system scheduler add name="update-whitelists-job" interval=6h on-event="update-whitelists" start-time=startup policy=read,write,test comment="Update firewall whitelists every 6 hours"
+   /system scheduler add name="update-whitelists-job" interval=6h on-event="update-whitelists" start-time=startup policy=read,write,test,ftp,policy comment="Update firewall whitelists every 6 hours"
    ```
 
 ### Mécanismes Anti-Verrouillage (Anti-Lockout)
