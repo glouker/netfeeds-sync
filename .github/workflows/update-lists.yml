@@ -1,0 +1,31 @@
+name: Update IP Lists
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-lists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make script executable
+        run: chmod +x scripts/update_lists.sh
+
+      - name: Run update script
+        run: ./scripts/update_lists.sh
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add lists/
+          if git diff --staged --quiet; then
+            echo "No changes in IP lists."
+          else
+            git commit -m "Automated update of whitelist IP lists"
+            git push
+          fi
