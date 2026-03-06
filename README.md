@@ -54,7 +54,7 @@ Un script RouterOS très robuste (`routeros/update-whitelists.rsc`) s'exécute l
 3. **Ajoutez un Scheduler (Planificateur) :**
    Ce cron local téléchargera et vérifiera nos whitelists automatiquement toutes les 6 heures :
    ```routeros
-   /system scheduler add name="update-whitelists-job" interval=6h on-event="update-whitelists" start-time=startup comment="Update firewall whitelists every 6 hours"
+   /system scheduler add name="update-whitelists-job" interval=6h on-event="update-whitelists" start-time=startup policy=read,write,test comment="Update firewall whitelists every 6 hours"
    ```
 
 ### Mécanismes Anti-Verrouillage (Anti-Lockout)
